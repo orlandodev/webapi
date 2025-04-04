@@ -1,0 +1,1410 @@
+{
+	"info": {
+		"_postman_id": "a48d0bd3-37c7-4067-bf25-6b11d4344d99",
+		"name": "WebAPI | v1",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "42553868",
+		"_collection_link": "https://www.postman.com/aerospace-astronaut-85406803/workspace/api-workspace/collection/42553868-a48d0bd3-37c7-4067-bf25-6b11d4344d99?action=share&source=collection_link&creator=42553868"
+	},
+	"item": [
+		{
+			"name": "api",
+			"item": [
+				{
+					"name": "version",
+					"item": [
+						{
+							"name": "Get the API version",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/api/version",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"api",
+										"version"
+									]
+								},
+								"description": "Returns the current version of the API."
+							},
+							"response": [
+								{
+									"name": "OK",
+									"originalRequest": {
+										"method": "GET",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "application/json"
+											}
+										],
+										"url": {
+											"raw": "{{baseUrl}}/api/version",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"api",
+												"version"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										}
+									],
+									"cookie": [],
+									"body": "{\n  \"version\": \"<string>\"\n}"
+								},
+								{
+									"name": "Actual",
+									"originalRequest": {
+										"method": "GET",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "application/json"
+											}
+										],
+										"url": {
+											"raw": "{{baseUrl}}/api/version",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"api",
+												"version"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json; charset=utf-8"
+										},
+										{
+											"key": "Date",
+											"value": "Fri, 04 Apr 2025 13:56:41 GMT"
+										},
+										{
+											"key": "Server",
+											"value": "Kestrel"
+										},
+										{
+											"key": "Transfer-Encoding",
+											"value": "chunked"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"version\": \"1.0\"\n}"
+								}
+							]
+						}
+					]
+				},
+				{
+					"name": "Album",
+					"item": [
+						{
+							"name": "{albumid}",
+							"item": [
+								{
+									"name": "Get a specific album",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"exec": [
+													"pm.test(\"Status code is 200\", () => {\r",
+													"  pm.expect(pm.response.code).to.eql(200);\r",
+													"});\r",
+													"\r",
+													"pm.test(\"Content-Type header is application/json\", () => {\r",
+													"  pm.expect(pm.response.headers.get('Content-Type')).to.include('application/json');\r",
+													"});\r",
+													""
+												],
+												"type": "text/javascript",
+												"packages": {}
+											}
+										}
+									],
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{m2m.access_token}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "GET",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "application/json"
+											},
+											{
+												"key": "x-api-version",
+												"value": "1.0",
+												"description": "Default API version",
+												"type": "text"
+											}
+										],
+										"url": {
+											"raw": "{{baseUrl}}/api/Album/:albumid",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"api",
+												"Album",
+												":albumid"
+											],
+											"variable": [
+												{
+													"key": "albumid",
+													"value": "1",
+													"description": "(Required) "
+												}
+											]
+										},
+										"description": "Return details for a specific album including title and artist name"
+									},
+									"response": [
+										{
+											"name": "OK",
+											"originalRequest": {
+												"method": "GET",
+												"header": [
+													{
+														"key": "Accept",
+														"value": "application/json"
+													}
+												],
+												"url": {
+													"raw": "{{baseUrl}}/api/Album/:albumid",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"api",
+														"Album",
+														":albumid"
+													],
+													"variable": [
+														{
+															"key": "albumid"
+														}
+													]
+												}
+											},
+											"status": "OK",
+											"code": 200,
+											"_postman_previewlanguage": "json",
+											"header": [
+												{
+													"key": "Content-Type",
+													"value": "application/json"
+												}
+											],
+											"cookie": [],
+											"body": "{\n  \"albumId\": \"<integer>\",\n  \"title\": \"<string>\",\n  \"artistName\": \"<string>\"\n}"
+										},
+										{
+											"name": "No version",
+											"originalRequest": {
+												"method": "GET",
+												"header": [
+													{
+														"key": "Accept",
+														"value": "application/json"
+													},
+													{
+														"key": "x-api-version",
+														"value": "1.0",
+														"description": "Default API version",
+														"type": "text",
+														"disabled": true
+													}
+												],
+												"url": {
+													"raw": "{{baseUrl}}/api/Album/:albumid",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"api",
+														"Album",
+														":albumid"
+													],
+													"variable": [
+														{
+															"key": "albumid",
+															"value": "1",
+															"description": "(Required) "
+														}
+													]
+												}
+											},
+											"status": "Bad Request",
+											"code": 400,
+											"_postman_previewlanguage": "json",
+											"header": [
+												{
+													"key": "Content-Type",
+													"value": "application/problem+json"
+												},
+												{
+													"key": "Date",
+													"value": "Fri, 04 Apr 2025 16:50:48 GMT"
+												},
+												{
+													"key": "Server",
+													"value": "Kestrel"
+												},
+												{
+													"key": "Transfer-Encoding",
+													"value": "chunked"
+												}
+											],
+											"cookie": [],
+											"body": "{\n    \"type\": \"https://docs.api-versioning.org/problems#unspecified\",\n    \"title\": \"Unspecified API version\",\n    \"status\": 400,\n    \"detail\": \"An API version is required, but was not specified.\",\n    \"traceId\": \"00-68e85750224c9264863cee2d50aa1129-682d7669676b32d6-00\"\n}"
+										},
+										{
+											"name": "Not found",
+											"originalRequest": {
+												"method": "GET",
+												"header": [
+													{
+														"key": "Accept",
+														"value": "application/json"
+													},
+													{
+														"key": "x-api-version",
+														"value": "1.0",
+														"description": "Default API version",
+														"type": "text"
+													}
+												],
+												"url": {
+													"raw": "{{baseUrl}}/api/Album/:albumid",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"api",
+														"Album",
+														":albumid"
+													],
+													"variable": [
+														{
+															"key": "albumid",
+															"value": "0",
+															"description": "(Required) "
+														}
+													]
+												}
+											},
+											"status": "Not Found",
+											"code": 404,
+											"_postman_previewlanguage": "json",
+											"header": [
+												{
+													"key": "Content-Type",
+													"value": "application/problem+json"
+												},
+												{
+													"key": "Date",
+													"value": "Fri, 04 Apr 2025 16:51:30 GMT"
+												},
+												{
+													"key": "Server",
+													"value": "Kestrel"
+												},
+												{
+													"key": "Transfer-Encoding",
+													"value": "chunked"
+												},
+												{
+													"key": "api-supported-versions",
+													"value": "1.0"
+												}
+											],
+											"cookie": [],
+											"body": "{\n    \"type\": \"https://tools.ietf.org/html/rfc9110#section-15.5.5\",\n    \"title\": \"Not Found\",\n    \"status\": 404,\n    \"traceId\": \"00-b2f1a06343f9009535a8736e32a3daad-47bfecced6aa6fe1-00\"\n}"
+										}
+									]
+								},
+								{
+									"name": "Updates a specific album",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"exec": [
+													"pm.test(\"Status code is 200\", () => {\r",
+													"  pm.expect(pm.response.code).to.eql(200);\r",
+													"});\r",
+													"\r",
+													"pm.test(\"Content-Type header is application/json\", () => {\r",
+													"  pm.expect(pm.response.headers.get('Content-Type')).to.include('application/json');\r",
+													"});\r",
+													""
+												],
+												"type": "text/javascript",
+												"packages": {}
+											}
+										}
+									],
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{m2m.access_token}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "PUT",
+										"header": [
+											{
+												"key": "Content-Type",
+												"value": "application/json"
+											},
+											{
+												"key": "x-api-version",
+												"value": "1.0",
+												"type": "text"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n    \"title\":\"Ghost in the machine\",\n    \"artistName\":\"The Police\"\n}",
+											"options": {
+												"raw": {
+													"headerFamily": "json",
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{baseUrl}}/api/Album/:albumid",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"api",
+												"Album",
+												":albumid"
+											],
+											"variable": [
+												{
+													"key": "albumid",
+													"value": "349",
+													"description": "(Required) "
+												}
+											]
+										},
+										"description": "Updates the details for a specific album including title and artist name"
+									},
+									"response": [
+										{
+											"name": "Forbidden",
+											"originalRequest": {
+												"method": "PUT",
+												"header": [
+													{
+														"key": "Content-Type",
+														"value": "application/json"
+													},
+													{
+														"key": "x-api-version",
+														"value": "1.0",
+														"type": "text"
+													}
+												],
+												"body": {
+													"mode": "raw",
+													"raw": "{\n    \"title\":\"Every Breath You Take: The Singles\",\n    \"artistName\":\"The Police\"\n}",
+													"options": {
+														"raw": {
+															"headerFamily": "json",
+															"language": "json"
+														}
+													}
+												},
+												"url": {
+													"raw": "{{baseUrl}}/api/Album/:albumid",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"api",
+														"Album",
+														":albumid"
+													],
+													"variable": [
+														{
+															"key": "albumid",
+															"value": "215",
+															"description": "(Required) "
+														}
+													]
+												}
+											},
+											"status": "Forbidden",
+											"code": 403,
+											"_postman_previewlanguage": "plain",
+											"header": [
+												{
+													"key": "Content-Length",
+													"value": "0"
+												},
+												{
+													"key": "Date",
+													"value": "Fri, 04 Apr 2025 16:53:14 GMT"
+												},
+												{
+													"key": "Server",
+													"value": "Kestrel"
+												}
+											],
+											"cookie": [],
+											"body": null
+										},
+										{
+											"name": "OK",
+											"originalRequest": {
+												"method": "PUT",
+												"header": [
+													{
+														"key": "Content-Type",
+														"value": "application/json"
+													},
+													{
+														"key": "x-api-version",
+														"value": "1.0",
+														"type": "text"
+													}
+												],
+												"body": {
+													"mode": "raw",
+													"raw": "{\n    \"title\":\"Ghost in the machine\",\n    \"artistName\":\"The Police\"\n}",
+													"options": {
+														"raw": {
+															"headerFamily": "json",
+															"language": "json"
+														}
+													}
+												},
+												"url": {
+													"raw": "{{baseUrl}}/api/Album/:albumid",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"api",
+														"Album",
+														":albumid"
+													],
+													"variable": [
+														{
+															"key": "albumid",
+															"value": "349",
+															"description": "(Required) "
+														}
+													]
+												}
+											},
+											"status": "OK",
+											"code": 200,
+											"_postman_previewlanguage": "json",
+											"header": [
+												{
+													"key": "Content-Type",
+													"value": "application/json; charset=utf-8"
+												},
+												{
+													"key": "Date",
+													"value": "Fri, 04 Apr 2025 18:13:42 GMT"
+												},
+												{
+													"key": "Server",
+													"value": "Kestrel"
+												},
+												{
+													"key": "Transfer-Encoding",
+													"value": "chunked"
+												},
+												{
+													"key": "api-supported-versions",
+													"value": "1.0"
+												}
+											],
+											"cookie": [],
+											"body": "{\n    \"albumId\": 349,\n    \"title\": \"Ghost in the machine\",\n    \"artistName\": \"The Police\"\n}"
+										}
+									]
+								},
+								{
+									"name": "Deletes a specific album",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"exec": [
+													"pm.test(\"Status code is 204\", () => {\r",
+													"  pm.expect(pm.response.code).to.eql(204);\r",
+													"});\r",
+													""
+												],
+												"type": "text/javascript",
+												"packages": {}
+											}
+										}
+									],
+									"request": {
+										"method": "DELETE",
+										"header": [],
+										"url": {
+											"raw": "{{baseUrl}}/api/Album/:albumid",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"api",
+												"Album",
+												":albumid"
+											],
+											"variable": [
+												{
+													"key": "albumid",
+													"value": "<integer>",
+													"description": "(Required) "
+												}
+											]
+										},
+										"description": "Removes an album using its unique Id value"
+									},
+									"response": [
+										{
+											"name": "No Content",
+											"originalRequest": {
+												"method": "DELETE",
+												"header": [],
+												"url": {
+													"raw": "{{baseUrl}}/api/Album/:albumid",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"api",
+														"Album",
+														":albumid"
+													],
+													"variable": [
+														{
+															"key": "albumid"
+														}
+													]
+												}
+											},
+											"status": "No Content",
+											"code": 204,
+											"_postman_previewlanguage": "text",
+											"header": [],
+											"cookie": [],
+											"body": ""
+										},
+										{
+											"name": "Not Found",
+											"originalRequest": {
+												"method": "DELETE",
+												"header": [],
+												"url": {
+													"raw": "{{baseUrl}}/api/Album/:albumid",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"api",
+														"Album",
+														":albumid"
+													],
+													"variable": [
+														{
+															"key": "albumid"
+														}
+													]
+												}
+											},
+											"status": "Not Found",
+											"code": 404,
+											"_postman_previewlanguage": "text",
+											"header": [],
+											"cookie": [],
+											"body": ""
+										}
+									]
+								}
+							]
+						},
+						{
+							"name": "Get a list of albums",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 200\", () => {\r",
+											"  pm.expect(pm.response.code).to.eql(200);\r",
+											"});\r",
+											"\r",
+											"pm.test(\"Content-Type header is application/json\", () => {\r",
+											"  pm.expect(pm.response.headers.get('Content-Type')).to.include('application/json');\r",
+											"});\r",
+											""
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{interactive.access_token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json"
+									},
+									{
+										"key": "x-api-version",
+										"value": "1.0",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/api/Album",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"api",
+										"Album"
+									]
+								},
+								"description": "Returns a list of all album titles and associated artist name."
+							},
+							"response": [
+								{
+									"name": "OK",
+									"originalRequest": {
+										"method": "GET",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "application/json"
+											}
+										],
+										"url": {
+											"raw": "{{baseUrl}}/api/Album",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"api",
+												"Album"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										}
+									],
+									"cookie": [],
+									"body": "[\n  {\n    \"albumId\": \"<integer>\",\n    \"title\": \"<string>\",\n    \"artistName\": \"<string>\"\n  },\n  {\n    \"albumId\": \"<integer>\",\n    \"title\": \"<string>\",\n    \"artistName\": \"<string>\"\n  }\n]"
+								}
+							]
+						},
+						{
+							"name": "Creates a new album",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 201\", () => {\r",
+											"  pm.expect(pm.response.code).to.eql(201);\r",
+											"});\r",
+											""
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{m2m.access_token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									},
+									{
+										"key": "x-api-version",
+										"value": "1.0",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"title\": \"{{title}}\",\n  \"artistName\": \"{{artistName}}\"\n}",
+									"options": {
+										"raw": {
+											"headerFamily": "json",
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/api/Album",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"api",
+										"Album"
+									]
+								},
+								"description": "Creates a new album with the supplied title and artist name"
+							},
+							"response": [
+								{
+									"name": "OK",
+									"originalRequest": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "Content-Type",
+												"value": "application/json"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n  \"title\": \"<string>\",\n  \"artistName\": \"<string>\"\n}",
+											"options": {
+												"raw": {
+													"headerFamily": "json",
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{baseUrl}}/api/Album",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"api",
+												"Album"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "text",
+									"header": [],
+									"cookie": [],
+									"body": ""
+								}
+							]
+						},
+						{
+							"name": "Get a list of albums (interactive client)",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{interactive.access_token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json"
+									},
+									{
+										"key": "x-api-version",
+										"value": "1.0",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/api/Album",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"api",
+										"Album"
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "OK",
+									"originalRequest": {
+										"method": "GET",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "application/json"
+											}
+										],
+										"url": {
+											"raw": "{{baseUrl}}/api/Album",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"api",
+												"Album"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										}
+									],
+									"cookie": [],
+									"body": "[\n  {\n    \"albumId\": \"<integer>\",\n    \"title\": \"<string>\",\n    \"artistName\": \"<string>\"\n  },\n  {\n    \"albumId\": \"<integer>\",\n    \"title\": \"<string>\",\n    \"artistName\": \"<string>\"\n  }\n]"
+								},
+								{
+									"name": "Actual",
+									"originalRequest": {
+										"method": "GET",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "application/json"
+											},
+											{
+												"key": "x-api-version",
+												"value": "1.0",
+												"type": "text"
+											}
+										],
+										"url": {
+											"raw": "{{baseUrl}}/api/Album",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"api",
+												"Album"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json; charset=utf-8"
+										},
+										{
+											"key": "Date",
+											"value": "Fri, 04 Apr 2025 16:46:31 GMT"
+										},
+										{
+											"key": "Server",
+											"value": "Kestrel"
+										},
+										{
+											"key": "Transfer-Encoding",
+											"value": "chunked"
+										},
+										{
+											"key": "api-supported-versions",
+											"value": "1.0"
+										}
+									],
+									"cookie": [],
+									"body": "[\n    {\n        \"albumId\": 1,\n        \"title\": \"For Those About To Rock We Salute You\",\n        \"artistName\": \"AC/DC\"\n    },\n    {\n        \"albumId\": 2,\n        \"title\": \"Balls to the Wall\",\n        \"artistName\": \"Accept\"\n    },\n    {\n        \"albumId\": 3,\n        \"title\": \"Restless and Wild\",\n        \"artistName\": \"Accept\"\n    },\n    {\n        \"albumId\": 4,\n        \"title\": \"Let There Be Rock\",\n        \"artistName\": \"AC/DC\"\n    },\n    {\n        \"albumId\": 5,\n        \"title\": \"Big Ones\",\n        \"artistName\": \"Aerosmith\"\n    },\n    {\n        \"albumId\": 6,\n        \"title\": \"Jagged Little Pill\",\n        \"artistName\": \"Alanis Morissette\"\n    },\n    {\n        \"albumId\": 7,\n        \"title\": \"Facelift\",\n        \"artistName\": \"Alice In Chains\"\n    },\n    {\n        \"albumId\": 8,\n        \"title\": \"Warner 25 Anos\",\n        \"artistName\": \"Antônio Carlos Jobim\"\n    },\n    {\n        \"albumId\": 9,\n        \"title\": \"Plays Metallica By Four Cellos\",\n        \"artistName\": \"Apocalyptica\"\n    },\n    {\n        \"albumId\": 10,\n        \"title\": \"Audioslave\",\n        \"artistName\": \"Audioslave\"\n    },\n    {\n        \"albumId\": 11,\n        \"title\": \"Out Of Exile\",\n        \"artistName\": \"Audioslave\"\n    },\n    {\n        \"albumId\": 12,\n        \"title\": \"BackBeat Soundtrack\",\n        \"artistName\": \"BackBeat\"\n    },\n    {\n        \"albumId\": 13,\n        \"title\": \"The Best Of Billy Cobham\",\n        \"artistName\": \"Billy Cobham\"\n    },\n    {\n        \"albumId\": 14,\n        \"title\": \"Alcohol Fueled Brewtality Live! [Disc 1]\",\n        \"artistName\": \"Black Label Society\"\n    },\n    {\n        \"albumId\": 15,\n        \"title\": \"Alcohol Fueled Brewtality Live! [Disc 2]\",\n        \"artistName\": \"Black Label Society\"\n    },\n    {\n        \"albumId\": 16,\n        \"title\": \"Black Sabbath\",\n        \"artistName\": \"Black Sabbath\"\n    },\n    {\n        \"albumId\": 17,\n        \"title\": \"Black Sabbath Vol. 4 (Remaster)\",\n        \"artistName\": \"Black Sabbath\"\n    },\n    {\n        \"albumId\": 18,\n        \"title\": \"Body Count\",\n        \"artistName\": \"Body Count\"\n    },\n    {\n        \"albumId\": 19,\n        \"title\": \"Chemical Wedding\",\n        \"artistName\": \"Bruce Dickinson\"\n    },\n    {\n        \"albumId\": 20,\n        \"title\": \"The Best Of Buddy Guy - The Millenium Collection\",\n        \"artistName\": \"Buddy Guy\"\n    },\n    {\n        \"albumId\": 21,\n        \"title\": \"Prenda Minha\",\n        \"artistName\": \"Caetano Veloso\"\n    },\n    {\n        \"albumId\": 22,\n        \"title\": \"Sozinho Remix Ao Vivo\",\n        \"artistName\": \"Caetano Veloso\"\n    },\n    {\n        \"albumId\": 23,\n        \"title\": \"Minha Historia\",\n        \"artistName\": \"Chico Buarque\"\n    },\n    {\n        \"albumId\": 24,\n        \"title\": \"Afrociberdelia\",\n        \"artistName\": \"Chico Science & Nação Zumbi\"\n    },\n    {\n        \"albumId\": 25,\n        \"title\": \"Da Lama Ao Caos\",\n        \"artistName\": \"Chico Science & Nação Zumbi\"\n    },\n    {\n        \"albumId\": 26,\n        \"title\": \"Acústico MTV [Live]\",\n        \"artistName\": \"Cidade Negra\"\n    },\n    {\n        \"albumId\": 27,\n        \"title\": \"Cidade Negra - Hits\",\n        \"artistName\": \"Cidade Negra\"\n    },\n    {\n        \"albumId\": 28,\n        \"title\": \"Na Pista\",\n        \"artistName\": \"Cláudio Zoli\"\n    },\n    {\n        \"albumId\": 29,\n        \"title\": \"Axé Bahia 2001\",\n        \"artistName\": \"Various Artists\"\n    },\n    {\n        \"albumId\": 30,\n        \"title\": \"BBC Sessions [Disc 1] [Live]\",\n        \"artistName\": \"Led Zeppelin\"\n    },\n    {\n        \"albumId\": 31,\n        \"title\": \"Bongo Fury\",\n        \"artistName\": \"Frank Zappa & Captain Beefheart\"\n    },\n    {\n        \"albumId\": 32,\n        \"title\": \"Carnaval 2001\",\n        \"artistName\": \"Various Artists\"\n    },\n    {\n        \"albumId\": 33,\n        \"title\": \"Chill: Brazil (Disc 1)\",\n        \"artistName\": \"Marcos Valle\"\n    },\n    {\n        \"albumId\": 34,\n        \"title\": \"Chill: Brazil (Disc 2)\",\n        \"artistName\": \"Antônio Carlos Jobim\"\n    },\n    {\n        \"albumId\": 35,\n        \"title\": \"Garage Inc. (Disc 1)\",\n        \"artistName\": \"Metallica\"\n    },\n    {\n        \"albumId\": 36,\n        \"title\": \"Greatest Hits II\",\n        \"artistName\": \"Queen\"\n    },\n    {\n        \"albumId\": 37,\n        \"title\": \"Greatest Kiss\",\n        \"artistName\": \"Kiss\"\n    },\n    {\n        \"albumId\": 38,\n        \"title\": \"Heart of the Night\",\n        \"artistName\": \"Spyro Gyra\"\n    },\n    {\n        \"albumId\": 39,\n        \"title\": \"International Superhits\",\n        \"artistName\": \"Green Day\"\n    },\n    {\n        \"albumId\": 40,\n        \"title\": \"Into The Light\",\n        \"artistName\": \"David Coverdale\"\n    },\n    {\n        \"albumId\": 41,\n        \"title\": \"Meus Momentos\",\n        \"artistName\": \"Gonzaguinha\"\n    },\n    {\n        \"albumId\": 42,\n        \"title\": \"Minha História\",\n        \"artistName\": \"Os Mutantes\"\n    },\n    {\n        \"albumId\": 43,\n        \"title\": \"MK III The Final Concerts [Disc 1]\",\n        \"artistName\": \"Deep Purple\"\n    },\n    {\n        \"albumId\": 44,\n        \"title\": \"Physical Graffiti [Disc 1]\",\n        \"artistName\": \"Led Zeppelin\"\n    },\n    {\n        \"albumId\": 45,\n        \"title\": \"Sambas De Enredo 2001\",\n        \"artistName\": \"Various Artists\"\n    },\n    {\n        \"albumId\": 46,\n        \"title\": \"Supernatural\",\n        \"artistName\": \"Santana\"\n    },\n    {\n        \"albumId\": 47,\n        \"title\": \"The Best of Ed Motta\",\n        \"artistName\": \"Ed Motta\"\n    },\n    {\n        \"albumId\": 48,\n        \"title\": \"The Essential Miles Davis [Disc 1]\",\n        \"artistName\": \"Miles Davis\"\n    },\n    {\n        \"albumId\": 49,\n        \"title\": \"The Essential Miles Davis [Disc 2]\",\n        \"artistName\": \"Miles Davis\"\n    },\n    {\n        \"albumId\": 50,\n        \"title\": \"The Final Concerts (Disc 2)\",\n        \"artistName\": \"Deep Purple\"\n    },\n    {\n        \"albumId\": 51,\n        \"title\": \"Up An' Atom\",\n        \"artistName\": \"Gene Krupa\"\n    },\n    {\n        \"albumId\": 52,\n        \"title\": \"Vinícius De Moraes - Sem Limite\",\n        \"artistName\": \"Toquinho & Vinícius\"\n    },\n    {\n        \"albumId\": 53,\n        \"title\": \"Vozes do MPB\",\n        \"artistName\": \"Various Artists\"\n    },\n    {\n        \"albumId\": 54,\n        \"title\": \"Chronicle, Vol. 1\",\n        \"artistName\": \"Creedence Clearwater Revival\"\n    },\n    {\n        \"albumId\": 55,\n        \"title\": \"Chronicle, Vol. 2\",\n        \"artistName\": \"Creedence Clearwater Revival\"\n    },\n    {\n        \"albumId\": 56,\n        \"title\": \"Cássia Eller - Coleção Sem Limite [Disc 2]\",\n        \"artistName\": \"Cássia Eller\"\n    },\n    {\n        \"albumId\": 57,\n        \"title\": \"Cássia Eller - Sem Limite [Disc 1]\",\n        \"artistName\": \"Cássia Eller\"\n    },\n    {\n        \"albumId\": 58,\n        \"title\": \"Come Taste The Band\",\n        \"artistName\": \"Deep Purple\"\n    },\n    {\n        \"albumId\": 59,\n        \"title\": \"Deep Purple In Rock\",\n        \"artistName\": \"Deep Purple\"\n    },\n    {\n        \"albumId\": 60,\n        \"title\": \"Fireball\",\n        \"artistName\": \"Deep Purple\"\n    },\n    {\n        \"albumId\": 61,\n        \"title\": \"Knocking at Your Back Door: The Best Of Deep Purple in the 80's\",\n        \"artistName\": \"Deep Purple\"\n    },\n    {\n        \"albumId\": 62,\n        \"title\": \"Machine Head\",\n        \"artistName\": \"Deep Purple\"\n    },\n    {\n        \"albumId\": 63,\n        \"title\": \"Purpendicular\",\n        \"artistName\": \"Deep Purple\"\n    },\n    {\n        \"albumId\": 64,\n        \"title\": \"Slaves And Masters\",\n        \"artistName\": \"Deep Purple\"\n    },\n    {\n        \"albumId\": 65,\n        \"title\": \"Stormbringer\",\n        \"artistName\": \"Deep Purple\"\n    },\n    {\n        \"albumId\": 66,\n        \"title\": \"The Battle Rages On\",\n        \"artistName\": \"Deep Purple\"\n    },\n    {\n        \"albumId\": 67,\n        \"title\": \"Vault: Def Leppard's Greatest Hits\",\n        \"artistName\": \"Def Leppard\"\n    },\n    {\n        \"albumId\": 68,\n        \"title\": \"Outbreak\",\n        \"artistName\": \"Dennis Chambers\"\n    },\n    {\n        \"albumId\": 69,\n        \"title\": \"Djavan Ao Vivo - Vol. 02\",\n        \"artistName\": \"Djavan\"\n    },\n    {\n        \"albumId\": 70,\n        \"title\": \"Djavan Ao Vivo - Vol. 1\",\n        \"artistName\": \"Djavan\"\n    },\n    {\n        \"albumId\": 71,\n        \"title\": \"Elis Regina-Minha História\",\n        \"artistName\": \"Elis Regina\"\n    },\n    {\n        \"albumId\": 72,\n        \"title\": \"The Cream Of Clapton\",\n        \"artistName\": \"Eric Clapton\"\n    },\n    {\n        \"albumId\": 73,\n        \"title\": \"Unplugged\",\n        \"artistName\": \"Eric Clapton\"\n    },\n    {\n        \"albumId\": 74,\n        \"title\": \"Album Of The Year\",\n        \"artistName\": \"Faith No More\"\n    },\n    {\n        \"albumId\": 75,\n        \"title\": \"Angel Dust\",\n        \"artistName\": \"Faith No More\"\n    },\n    {\n        \"albumId\": 76,\n        \"title\": \"King For A Day Fool For A Lifetime\",\n        \"artistName\": \"Faith No More\"\n    },\n    {\n        \"albumId\": 77,\n        \"title\": \"The Real Thing\",\n        \"artistName\": \"Faith No More\"\n    },\n    {\n        \"albumId\": 78,\n        \"title\": \"Deixa Entrar\",\n        \"artistName\": \"Falamansa\"\n    },\n    {\n        \"albumId\": 79,\n        \"title\": \"In Your Honor [Disc 1]\",\n        \"artistName\": \"Foo Fighters\"\n    },\n    {\n        \"albumId\": 80,\n        \"title\": \"In Your Honor [Disc 2]\",\n        \"artistName\": \"Foo Fighters\"\n    },\n    {\n        \"albumId\": 81,\n        \"title\": \"One By One\",\n        \"artistName\": \"Foo Fighters\"\n    },\n    {\n        \"albumId\": 82,\n        \"title\": \"The Colour And The Shape\",\n        \"artistName\": \"Foo Fighters\"\n    },\n    {\n        \"albumId\": 83,\n        \"title\": \"My Way: The Best Of Frank Sinatra [Disc 1]\",\n        \"artistName\": \"Frank Sinatra\"\n    },\n    {\n        \"albumId\": 84,\n        \"title\": \"Roda De Funk\",\n        \"artistName\": \"Funk Como Le Gusta\"\n    },\n    {\n        \"albumId\": 85,\n        \"title\": \"As Canções de Eu Tu Eles\",\n        \"artistName\": \"Gilberto Gil\"\n    },\n    {\n        \"albumId\": 86,\n        \"title\": \"Quanta Gente Veio Ver (Live)\",\n        \"artistName\": \"Gilberto Gil\"\n    },\n    {\n        \"albumId\": 87,\n        \"title\": \"Quanta Gente Veio ver--Bônus De Carnaval\",\n        \"artistName\": \"Gilberto Gil\"\n    },\n    {\n        \"albumId\": 88,\n        \"title\": \"Faceless\",\n        \"artistName\": \"Godsmack\"\n    },\n    {\n        \"albumId\": 89,\n        \"title\": \"American Idiot\",\n        \"artistName\": \"Green Day\"\n    },\n    {\n        \"albumId\": 90,\n        \"title\": \"Appetite for Destruction\",\n        \"artistName\": \"Guns N' Roses\"\n    },\n    {\n        \"albumId\": 91,\n        \"title\": \"Use Your Illusion I\",\n        \"artistName\": \"Guns N' Roses\"\n    },\n    {\n        \"albumId\": 92,\n        \"title\": \"Use Your Illusion II\",\n        \"artistName\": \"Guns N' Roses\"\n    },\n    {\n        \"albumId\": 93,\n        \"title\": \"Blue Moods\",\n        \"artistName\": \"Incognito\"\n    },\n    {\n        \"albumId\": 94,\n        \"title\": \"A Matter of Life and Death\",\n        \"artistName\": \"Iron Maiden\"\n    },\n    {\n        \"albumId\": 95,\n        \"title\": \"A Real Dead One\",\n        \"artistName\": \"Iron Maiden\"\n    },\n    {\n        \"albumId\": 96,\n        \"title\": \"A Real Live One\",\n        \"artistName\": \"Iron Maiden\"\n    },\n    {\n        \"albumId\": 97,\n        \"title\": \"Brave New World\",\n        \"artistName\": \"Iron Maiden\"\n    },\n    {\n        \"albumId\": 98,\n        \"title\": \"Dance Of Death\",\n        \"artistName\": \"Iron Maiden\"\n    },\n    {\n        \"albumId\": 99,\n        \"title\": \"Fear Of The Dark\",\n        \"artistName\": \"Iron Maiden\"\n    },\n    {\n        \"albumId\": 100,\n        \"title\": \"Iron Maiden\",\n        \"artistName\": \"Iron Maiden\"\n    },\n    {\n        \"albumId\": 101,\n        \"title\": \"Killers\",\n        \"artistName\": \"Iron Maiden\"\n    },\n    {\n        \"albumId\": 102,\n        \"title\": \"Live After Death\",\n        \"artistName\": \"Iron Maiden\"\n    },\n    {\n        \"albumId\": 103,\n        \"title\": \"Live At Donington 1992 (Disc 1)\",\n        \"artistName\": \"Iron Maiden\"\n    },\n    {\n        \"albumId\": 104,\n        \"title\": \"Live At Donington 1992 (Disc 2)\",\n        \"artistName\": \"Iron Maiden\"\n    },\n    {\n        \"albumId\": 105,\n        \"title\": \"No Prayer For The Dying\",\n        \"artistName\": \"Iron Maiden\"\n    },\n    {\n        \"albumId\": 106,\n        \"title\": \"Piece Of Mind\",\n        \"artistName\": \"Iron Maiden\"\n    },\n    {\n        \"albumId\": 107,\n        \"title\": \"Powerslave\",\n        \"artistName\": \"Iron Maiden\"\n    },\n    {\n        \"albumId\": 108,\n        \"title\": \"Rock In Rio [CD1]\",\n        \"artistName\": \"Iron Maiden\"\n    },\n    {\n        \"albumId\": 109,\n        \"title\": \"Rock In Rio [CD2]\",\n        \"artistName\": \"Iron Maiden\"\n    },\n    {\n        \"albumId\": 110,\n        \"title\": \"Seventh Son of a Seventh Son\",\n        \"artistName\": \"Iron Maiden\"\n    },\n    {\n        \"albumId\": 111,\n        \"title\": \"Somewhere in Time\",\n        \"artistName\": \"Iron Maiden\"\n    },\n    {\n        \"albumId\": 112,\n        \"title\": \"The Number of The Beast\",\n        \"artistName\": \"Iron Maiden\"\n    },\n    {\n        \"albumId\": 113,\n        \"title\": \"The X Factor\",\n        \"artistName\": \"Iron Maiden\"\n    },\n    {\n        \"albumId\": 114,\n        \"title\": \"Virtual XI\",\n        \"artistName\": \"Iron Maiden\"\n    },\n    {\n        \"albumId\": 115,\n        \"title\": \"Sex Machine\",\n        \"artistName\": \"James Brown\"\n    },\n    {\n        \"albumId\": 116,\n        \"title\": \"Emergency On Planet Earth\",\n        \"artistName\": \"Jamiroquai\"\n    },\n    {\n        \"albumId\": 117,\n        \"title\": \"Synkronized\",\n        \"artistName\": \"Jamiroquai\"\n    },\n    {\n        \"albumId\": 118,\n        \"title\": \"The Return Of The Space Cowboy\",\n        \"artistName\": \"Jamiroquai\"\n    },\n    {\n        \"albumId\": 119,\n        \"title\": \"Get Born\",\n        \"artistName\": \"JET\"\n    },\n    {\n        \"albumId\": 120,\n        \"title\": \"Are You Experienced?\",\n        \"artistName\": \"Jimi Hendrix\"\n    },\n    {\n        \"albumId\": 121,\n        \"title\": \"Surfing with the Alien (Remastered)\",\n        \"artistName\": \"Joe Satriani\"\n    },\n    {\n        \"albumId\": 122,\n        \"title\": \"Jorge Ben Jor 25 Anos\",\n        \"artistName\": \"Jorge Ben\"\n    },\n    {\n        \"albumId\": 123,\n        \"title\": \"Jota Quest-1995\",\n        \"artistName\": \"Jota Quest\"\n    },\n    {\n        \"albumId\": 124,\n        \"title\": \"Cafezinho\",\n        \"artistName\": \"João Suplicy\"\n    },\n    {\n        \"albumId\": 125,\n        \"title\": \"Living After Midnight\",\n        \"artistName\": \"Judas Priest\"\n    },\n    {\n        \"albumId\": 126,\n        \"title\": \"Unplugged [Live]\",\n        \"artistName\": \"Kiss\"\n    },\n    {\n        \"albumId\": 127,\n        \"title\": \"BBC Sessions [Disc 2] [Live]\",\n        \"artistName\": \"Led Zeppelin\"\n    },\n    {\n        \"albumId\": 128,\n        \"title\": \"Coda\",\n        \"artistName\": \"Led Zeppelin\"\n    },\n    {\n        \"albumId\": 129,\n        \"title\": \"Houses Of The Holy\",\n        \"artistName\": \"Led Zeppelin\"\n    },\n    {\n        \"albumId\": 130,\n        \"title\": \"In Through The Out Door\",\n        \"artistName\": \"Led Zeppelin\"\n    },\n    {\n        \"albumId\": 131,\n        \"title\": \"IV\",\n        \"artistName\": \"Led Zeppelin\"\n    },\n    {\n        \"albumId\": 132,\n        \"title\": \"Led Zeppelin I\",\n        \"artistName\": \"Led Zeppelin\"\n    },\n    {\n        \"albumId\": 133,\n        \"title\": \"Led Zeppelin II\",\n        \"artistName\": \"Led Zeppelin\"\n    },\n    {\n        \"albumId\": 134,\n        \"title\": \"Led Zeppelin III\",\n        \"artistName\": \"Led Zeppelin\"\n    },\n    {\n        \"albumId\": 135,\n        \"title\": \"Physical Graffiti [Disc 2]\",\n        \"artistName\": \"Led Zeppelin\"\n    },\n    {\n        \"albumId\": 136,\n        \"title\": \"Presence\",\n        \"artistName\": \"Led Zeppelin\"\n    },\n    {\n        \"albumId\": 137,\n        \"title\": \"The Song Remains The Same (Disc 1)\",\n        \"artistName\": \"Led Zeppelin\"\n    },\n    {\n        \"albumId\": 138,\n        \"title\": \"The Song Remains The Same (Disc 2)\",\n        \"artistName\": \"Led Zeppelin\"\n    },\n    {\n        \"albumId\": 139,\n        \"title\": \"A TempestadeTempestade Ou O Livro Dos Dias\",\n        \"artistName\": \"Legião Urbana\"\n    },\n    {\n        \"albumId\": 140,\n        \"title\": \"Mais Do Mesmo\",\n        \"artistName\": \"Legião Urbana\"\n    },\n    {\n        \"albumId\": 141,\n        \"title\": \"Greatest Hits\",\n        \"artistName\": \"Lenny Kravitz\"\n    },\n    {\n        \"albumId\": 142,\n        \"title\": \"Lulu Santos - RCA 100 Anos De Música - Álbum 01\",\n        \"artistName\": \"Lulu Santos\"\n    },\n    {\n        \"albumId\": 143,\n        \"title\": \"Lulu Santos - RCA 100 Anos De Música - Álbum 02\",\n        \"artistName\": \"Lulu Santos\"\n    },\n    {\n        \"albumId\": 144,\n        \"title\": \"Misplaced Childhood\",\n        \"artistName\": \"Marillion\"\n    },\n    {\n        \"albumId\": 145,\n        \"title\": \"Barulhinho Bom\",\n        \"artistName\": \"Marisa Monte\"\n    },\n    {\n        \"albumId\": 146,\n        \"title\": \"Seek And Shall Find: More Of The Best (1963-1981)\",\n        \"artistName\": \"Marvin Gaye\"\n    },\n    {\n        \"albumId\": 147,\n        \"title\": \"The Best Of Men At Work\",\n        \"artistName\": \"Men At Work\"\n    },\n    {\n        \"albumId\": 148,\n        \"title\": \"Black Album\",\n        \"artistName\": \"Metallica\"\n    },\n    {\n        \"albumId\": 149,\n        \"title\": \"Garage Inc. (Disc 2)\",\n        \"artistName\": \"Metallica\"\n    },\n    {\n        \"albumId\": 150,\n        \"title\": \"Kill 'Em All\",\n        \"artistName\": \"Metallica\"\n    },\n    {\n        \"albumId\": 151,\n        \"title\": \"Load\",\n        \"artistName\": \"Metallica\"\n    },\n    {\n        \"albumId\": 152,\n        \"title\": \"Master Of Puppets\",\n        \"artistName\": \"Metallica\"\n    },\n    {\n        \"albumId\": 153,\n        \"title\": \"ReLoad\",\n        \"artistName\": \"Metallica\"\n    },\n    {\n        \"albumId\": 154,\n        \"title\": \"Ride The Lightning\",\n        \"artistName\": \"Metallica\"\n    },\n    {\n        \"albumId\": 155,\n        \"title\": \"St. Anger\",\n        \"artistName\": \"Metallica\"\n    },\n    {\n        \"albumId\": 156,\n        \"title\": \"...And Justice For All\",\n        \"artistName\": \"Metallica\"\n    },\n    {\n        \"albumId\": 157,\n        \"title\": \"Miles Ahead\",\n        \"artistName\": \"Miles Davis\"\n    },\n    {\n        \"albumId\": 158,\n        \"title\": \"Milton Nascimento Ao Vivo\",\n        \"artistName\": \"Milton Nascimento\"\n    },\n    {\n        \"albumId\": 159,\n        \"title\": \"Minas\",\n        \"artistName\": \"Milton Nascimento\"\n    },\n    {\n        \"albumId\": 160,\n        \"title\": \"Ace Of Spades\",\n        \"artistName\": \"Motörhead\"\n    },\n    {\n        \"albumId\": 161,\n        \"title\": \"Demorou...\",\n        \"artistName\": \"Mônica Marianno\"\n    },\n    {\n        \"albumId\": 162,\n        \"title\": \"Motley Crue Greatest Hits\",\n        \"artistName\": \"Mötley Crüe\"\n    },\n    {\n        \"albumId\": 163,\n        \"title\": \"From The Muddy Banks Of The Wishkah [Live]\",\n        \"artistName\": \"Nirvana\"\n    },\n    {\n        \"albumId\": 164,\n        \"title\": \"Nevermind\",\n        \"artistName\": \"Nirvana\"\n    },\n    {\n        \"albumId\": 165,\n        \"title\": \"Compositores\",\n        \"artistName\": \"O Terço\"\n    },\n    {\n        \"albumId\": 166,\n        \"title\": \"Olodum\",\n        \"artistName\": \"Olodum\"\n    },\n    {\n        \"albumId\": 167,\n        \"title\": \"Acústico MTV\",\n        \"artistName\": \"Os Paralamas Do Sucesso\"\n    },\n    {\n        \"albumId\": 168,\n        \"title\": \"Arquivo II\",\n        \"artistName\": \"Os Paralamas Do Sucesso\"\n    },\n    {\n        \"albumId\": 169,\n        \"title\": \"Arquivo Os Paralamas Do Sucesso\",\n        \"artistName\": \"Os Paralamas Do Sucesso\"\n    },\n    {\n        \"albumId\": 170,\n        \"title\": \"Bark at the Moon (Remastered)\",\n        \"artistName\": \"Ozzy Osbourne\"\n    },\n    {\n        \"albumId\": 171,\n        \"title\": \"Blizzard of Ozz\",\n        \"artistName\": \"Ozzy Osbourne\"\n    },\n    {\n        \"albumId\": 172,\n        \"title\": \"Diary of a Madman (Remastered)\",\n        \"artistName\": \"Ozzy Osbourne\"\n    },\n    {\n        \"albumId\": 173,\n        \"title\": \"No More Tears (Remastered)\",\n        \"artistName\": \"Ozzy Osbourne\"\n    },\n    {\n        \"albumId\": 174,\n        \"title\": \"Tribute\",\n        \"artistName\": \"Ozzy Osbourne\"\n    },\n    {\n        \"albumId\": 175,\n        \"title\": \"Walking Into Clarksdale\",\n        \"artistName\": \"Page & Plant\"\n    },\n    {\n        \"albumId\": 176,\n        \"title\": \"Original Soundtracks 1\",\n        \"artistName\": \"Passengers\"\n    },\n    {\n        \"albumId\": 177,\n        \"title\": \"The Beast Live\",\n        \"artistName\": \"Paul D'Ianno\"\n    },\n    {\n        \"albumId\": 178,\n        \"title\": \"Live On Two Legs [Live]\",\n        \"artistName\": \"Pearl Jam\"\n    },\n    {\n        \"albumId\": 179,\n        \"title\": \"Pearl Jam\",\n        \"artistName\": \"Pearl Jam\"\n    },\n    {\n        \"albumId\": 180,\n        \"title\": \"Riot Act\",\n        \"artistName\": \"Pearl Jam\"\n    },\n    {\n        \"albumId\": 181,\n        \"title\": \"Ten\",\n        \"artistName\": \"Pearl Jam\"\n    },\n    {\n        \"albumId\": 182,\n        \"title\": \"Vs.\",\n        \"artistName\": \"Pearl Jam\"\n    },\n    {\n        \"albumId\": 183,\n        \"title\": \"Dark Side Of The Moon\",\n        \"artistName\": \"Pink Floyd\"\n    },\n    {\n        \"albumId\": 184,\n        \"title\": \"Os Cães Ladram Mas A Caravana Não Pára\",\n        \"artistName\": \"Planet Hemp\"\n    },\n    {\n        \"albumId\": 185,\n        \"title\": \"Greatest Hits I\",\n        \"artistName\": \"Queen\"\n    },\n    {\n        \"albumId\": 186,\n        \"title\": \"News Of The World\",\n        \"artistName\": \"Queen\"\n    },\n    {\n        \"albumId\": 187,\n        \"title\": \"Out Of Time\",\n        \"artistName\": \"R.E.M. Feat. Kate Pearson\"\n    },\n    {\n        \"albumId\": 188,\n        \"title\": \"Green\",\n        \"artistName\": \"R.E.M.\"\n    },\n    {\n        \"albumId\": 189,\n        \"title\": \"New Adventures In Hi-Fi\",\n        \"artistName\": \"R.E.M.\"\n    },\n    {\n        \"albumId\": 190,\n        \"title\": \"The Best Of R.E.M.: The IRS Years\",\n        \"artistName\": \"R.E.M.\"\n    },\n    {\n        \"albumId\": 191,\n        \"title\": \"Cesta Básica\",\n        \"artistName\": \"Raimundos\"\n    },\n    {\n        \"albumId\": 192,\n        \"title\": \"Raul Seixas\",\n        \"artistName\": \"Raul Seixas\"\n    },\n    {\n        \"albumId\": 193,\n        \"title\": \"Blood Sugar Sex Magik\",\n        \"artistName\": \"Red Hot Chili Peppers\"\n    },\n    {\n        \"albumId\": 194,\n        \"title\": \"By The Way\",\n        \"artistName\": \"Red Hot Chili Peppers\"\n    },\n    {\n        \"albumId\": 195,\n        \"title\": \"Californication\",\n        \"artistName\": \"Red Hot Chili Peppers\"\n    },\n    {\n        \"albumId\": 196,\n        \"title\": \"Retrospective I (1974-1980)\",\n        \"artistName\": \"Rush\"\n    },\n    {\n        \"albumId\": 197,\n        \"title\": \"Santana - As Years Go By\",\n        \"artistName\": \"Santana\"\n    },\n    {\n        \"albumId\": 198,\n        \"title\": \"Santana Live\",\n        \"artistName\": \"Santana\"\n    },\n    {\n        \"albumId\": 199,\n        \"title\": \"Maquinarama\",\n        \"artistName\": \"Skank\"\n    },\n    {\n        \"albumId\": 200,\n        \"title\": \"O Samba Poconé\",\n        \"artistName\": \"Skank\"\n    },\n    {\n        \"albumId\": 201,\n        \"title\": \"Judas 0: B-Sides and Rarities\",\n        \"artistName\": \"Smashing Pumpkins\"\n    },\n    {\n        \"albumId\": 202,\n        \"title\": \"Rotten Apples: Greatest Hits\",\n        \"artistName\": \"Smashing Pumpkins\"\n    },\n    {\n        \"albumId\": 203,\n        \"title\": \"A-Sides\",\n        \"artistName\": \"Soundgarden\"\n    },\n    {\n        \"albumId\": 204,\n        \"title\": \"Morning Dance\",\n        \"artistName\": \"Spyro Gyra\"\n    },\n    {\n        \"albumId\": 205,\n        \"title\": \"In Step\",\n        \"artistName\": \"Stevie Ray Vaughan & Double Trouble\"\n    },\n    {\n        \"albumId\": 206,\n        \"title\": \"Core\",\n        \"artistName\": \"Stone Temple Pilots\"\n    },\n    {\n        \"albumId\": 207,\n        \"title\": \"Mezmerize\",\n        \"artistName\": \"System Of A Down\"\n    },\n    {\n        \"albumId\": 208,\n        \"title\": \"[1997] Black Light Syndrome\",\n        \"artistName\": \"Terry Bozzio, Tony Levin & Steve Stevens\"\n    },\n    {\n        \"albumId\": 209,\n        \"title\": \"Live [Disc 1]\",\n        \"artistName\": \"The Black Crowes\"\n    },\n    {\n        \"albumId\": 210,\n        \"title\": \"Live [Disc 2]\",\n        \"artistName\": \"The Black Crowes\"\n    },\n    {\n        \"albumId\": 211,\n        \"title\": \"The Singles\",\n        \"artistName\": \"The Clash\"\n    },\n    {\n        \"albumId\": 212,\n        \"title\": \"Beyond Good And Evil\",\n        \"artistName\": \"The Cult\"\n    },\n    {\n        \"albumId\": 213,\n        \"title\": \"Pure Cult: The Best Of The Cult (For Rockers, Ravers, Lovers & Sinners) [UK]\",\n        \"artistName\": \"The Cult\"\n    },\n    {\n        \"albumId\": 214,\n        \"title\": \"The Doors\",\n        \"artistName\": \"The Doors\"\n    },\n    {\n        \"albumId\": 215,\n        \"title\": \"Every Breath You Take: The Singles\",\n        \"artistName\": \"The Police\"\n    },\n    {\n        \"albumId\": 216,\n        \"title\": \"Hot Rocks, 1964-1971 (Disc 1)\",\n        \"artistName\": \"The Rolling Stones\"\n    },\n    {\n        \"albumId\": 217,\n        \"title\": \"No Security\",\n        \"artistName\": \"The Rolling Stones\"\n    },\n    {\n        \"albumId\": 218,\n        \"title\": \"Voodoo Lounge\",\n        \"artistName\": \"The Rolling Stones\"\n    },\n    {\n        \"albumId\": 219,\n        \"title\": \"Tangents\",\n        \"artistName\": \"The Tea Party\"\n    },\n    {\n        \"albumId\": 220,\n        \"title\": \"Transmission\",\n        \"artistName\": \"The Tea Party\"\n    },\n    {\n        \"albumId\": 221,\n        \"title\": \"My Generation - The Very Best Of The Who\",\n        \"artistName\": \"The Who\"\n    },\n    {\n        \"albumId\": 222,\n        \"title\": \"Serie Sem Limite (Disc 1)\",\n        \"artistName\": \"Tim Maia\"\n    },\n    {\n        \"albumId\": 223,\n        \"title\": \"Serie Sem Limite (Disc 2)\",\n        \"artistName\": \"Tim Maia\"\n    },\n    {\n        \"albumId\": 224,\n        \"title\": \"Acústico\",\n        \"artistName\": \"Titãs\"\n    },\n    {\n        \"albumId\": 225,\n        \"title\": \"Volume Dois\",\n        \"artistName\": \"Titãs\"\n    },\n    {\n        \"albumId\": 226,\n        \"title\": \"Battlestar Galactica: The Story So Far\",\n        \"artistName\": \"Battlestar Galactica\"\n    },\n    {\n        \"albumId\": 227,\n        \"title\": \"Battlestar Galactica, Season 3\",\n        \"artistName\": \"Battlestar Galactica\"\n    },\n    {\n        \"albumId\": 228,\n        \"title\": \"Heroes, Season 1\",\n        \"artistName\": \"Heroes\"\n    },\n    {\n        \"albumId\": 229,\n        \"title\": \"Lost, Season 3\",\n        \"artistName\": \"Lost\"\n    },\n    {\n        \"albumId\": 230,\n        \"title\": \"Lost, Season 1\",\n        \"artistName\": \"Lost\"\n    },\n    {\n        \"albumId\": 231,\n        \"title\": \"Lost, Season 2\",\n        \"artistName\": \"Lost\"\n    },\n    {\n        \"albumId\": 232,\n        \"title\": \"Achtung Baby\",\n        \"artistName\": \"U2\"\n    },\n    {\n        \"albumId\": 233,\n        \"title\": \"All That You Can't Leave Behind\",\n        \"artistName\": \"U2\"\n    },\n    {\n        \"albumId\": 234,\n        \"title\": \"B-Sides 1980-1990\",\n        \"artistName\": \"U2\"\n    },\n    {\n        \"albumId\": 235,\n        \"title\": \"How To Dismantle An Atomic Bomb\",\n        \"artistName\": \"U2\"\n    },\n    {\n        \"albumId\": 236,\n        \"title\": \"Pop\",\n        \"artistName\": \"U2\"\n    },\n    {\n        \"albumId\": 237,\n        \"title\": \"Rattle And Hum\",\n        \"artistName\": \"U2\"\n    },\n    {\n        \"albumId\": 238,\n        \"title\": \"The Best Of 1980-1990\",\n        \"artistName\": \"U2\"\n    },\n    {\n        \"albumId\": 239,\n        \"title\": \"War\",\n        \"artistName\": \"U2\"\n    },\n    {\n        \"albumId\": 240,\n        \"title\": \"Zooropa\",\n        \"artistName\": \"U2\"\n    },\n    {\n        \"albumId\": 241,\n        \"title\": \"UB40 The Best Of - Volume Two [UK]\",\n        \"artistName\": \"UB40\"\n    },\n    {\n        \"albumId\": 242,\n        \"title\": \"Diver Down\",\n        \"artistName\": \"Van Halen\"\n    },\n    {\n        \"albumId\": 243,\n        \"title\": \"The Best Of Van Halen, Vol. I\",\n        \"artistName\": \"Van Halen\"\n    },\n    {\n        \"albumId\": 244,\n        \"title\": \"Van Halen\",\n        \"artistName\": \"Van Halen\"\n    },\n    {\n        \"albumId\": 245,\n        \"title\": \"Van Halen III\",\n        \"artistName\": \"Van Halen\"\n    },\n    {\n        \"albumId\": 246,\n        \"title\": \"Contraband\",\n        \"artistName\": \"Velvet Revolver\"\n    },\n    {\n        \"albumId\": 247,\n        \"title\": \"Vinicius De Moraes\",\n        \"artistName\": \"Vinícius De Moraes\"\n    },\n    {\n        \"albumId\": 248,\n        \"title\": \"Ao Vivo [IMPORT]\",\n        \"artistName\": \"Zeca Pagodinho\"\n    },\n    {\n        \"albumId\": 249,\n        \"title\": \"The Office, Season 1\",\n        \"artistName\": \"The Office\"\n    },\n    {\n        \"albumId\": 250,\n        \"title\": \"The Office, Season 2\",\n        \"artistName\": \"The Office\"\n    },\n    {\n        \"albumId\": 251,\n        \"title\": \"The Office, Season 3\",\n        \"artistName\": \"The Office\"\n    },\n    {\n        \"albumId\": 252,\n        \"title\": \"Un-Led-Ed\",\n        \"artistName\": \"Dread Zeppelin\"\n    },\n    {\n        \"albumId\": 253,\n        \"title\": \"Battlestar Galactica (Classic), Season 1\",\n        \"artistName\": \"Battlestar Galactica (Classic)\"\n    },\n    {\n        \"albumId\": 254,\n        \"title\": \"Aquaman\",\n        \"artistName\": \"Aquaman\"\n    },\n    {\n        \"albumId\": 255,\n        \"title\": \"Instant Karma: The Amnesty International Campaign to Save Darfur\",\n        \"artistName\": \"U2\"\n    },\n    {\n        \"albumId\": 256,\n        \"title\": \"Speak of the Devil\",\n        \"artistName\": \"Ozzy Osbourne\"\n    },\n    {\n        \"albumId\": 257,\n        \"title\": \"20th Century Masters - The Millennium Collection: The Best of Scorpions\",\n        \"artistName\": \"Scorpions\"\n    },\n    {\n        \"albumId\": 258,\n        \"title\": \"House of Pain\",\n        \"artistName\": \"House Of Pain\"\n    },\n    {\n        \"albumId\": 259,\n        \"title\": \"Radio Brasil (O Som da Jovem Vanguarda) - Seleccao de Henrique Amaro\",\n        \"artistName\": \"O Rappa\"\n    },\n    {\n        \"albumId\": 260,\n        \"title\": \"Cake: B-Sides and Rarities\",\n        \"artistName\": \"Cake\"\n    },\n    {\n        \"albumId\": 261,\n        \"title\": \"LOST, Season 4\",\n        \"artistName\": \"Lost\"\n    },\n    {\n        \"albumId\": 262,\n        \"title\": \"Quiet Songs\",\n        \"artistName\": \"Aisha Duo\"\n    },\n    {\n        \"albumId\": 263,\n        \"title\": \"Muso Ko\",\n        \"artistName\": \"Habib Koité and Bamada\"\n    },\n    {\n        \"albumId\": 264,\n        \"title\": \"Realize\",\n        \"artistName\": \"Karsh Kale\"\n    },\n    {\n        \"albumId\": 265,\n        \"title\": \"Every Kind of Light\",\n        \"artistName\": \"The Posies\"\n    },\n    {\n        \"albumId\": 266,\n        \"title\": \"Duos II\",\n        \"artistName\": \"Luciana Souza/Romero Lubambo\"\n    },\n    {\n        \"albumId\": 267,\n        \"title\": \"Worlds\",\n        \"artistName\": \"Aaron Goldberg\"\n    },\n    {\n        \"albumId\": 268,\n        \"title\": \"The Best of Beethoven\",\n        \"artistName\": \"Nicolaus Esterhazy Sinfonia\"\n    },\n    {\n        \"albumId\": 269,\n        \"title\": \"Temple of the Dog\",\n        \"artistName\": \"Temple of the Dog\"\n    },\n    {\n        \"albumId\": 270,\n        \"title\": \"Carry On\",\n        \"artistName\": \"Chris Cornell\"\n    },\n    {\n        \"albumId\": 271,\n        \"title\": \"Revelations\",\n        \"artistName\": \"Audioslave\"\n    },\n    {\n        \"albumId\": 272,\n        \"title\": \"Adorate Deum: Gregorian Chant from the Proper of the Mass\",\n        \"artistName\": \"Alberto Turco & Nova Schola Gregoriana\"\n    },\n    {\n        \"albumId\": 273,\n        \"title\": \"Allegri: Miserere\",\n        \"artistName\": \"Richard Marlow & The Choir of Trinity College, Cambridge\"\n    },\n    {\n        \"albumId\": 274,\n        \"title\": \"Pachelbel: Canon & Gigue\",\n        \"artistName\": \"English Concert & Trevor Pinnock\"\n    },\n    {\n        \"albumId\": 275,\n        \"title\": \"Vivaldi: The Four Seasons\",\n        \"artistName\": \"Anne-Sophie Mutter, Herbert Von Karajan & Wiener Philharmoniker\"\n    },\n    {\n        \"albumId\": 276,\n        \"title\": \"Bach: Violin Concertos\",\n        \"artistName\": \"Hilary Hahn, Jeffrey Kahane, Los Angeles Chamber Orchestra & Margaret Batjer\"\n    },\n    {\n        \"albumId\": 277,\n        \"title\": \"Bach: Goldberg Variations\",\n        \"artistName\": \"Wilhelm Kempff\"\n    },\n    {\n        \"albumId\": 278,\n        \"title\": \"Bach: The Cello Suites\",\n        \"artistName\": \"Yo-Yo Ma\"\n    },\n    {\n        \"albumId\": 279,\n        \"title\": \"Handel: The Messiah (Highlights)\",\n        \"artistName\": \"Scholars Baroque Ensemble\"\n    },\n    {\n        \"albumId\": 280,\n        \"title\": \"The World of Classical Favourites\",\n        \"artistName\": \"Academy of St. Martin in the Fields & Sir Neville Marriner\"\n    },\n    {\n        \"albumId\": 281,\n        \"title\": \"Sir Neville Marriner: A Celebration\",\n        \"artistName\": \"Academy of St. Martin in the Fields Chamber Ensemble & Sir Neville Marriner\"\n    },\n    {\n        \"albumId\": 282,\n        \"title\": \"Mozart: Wind Concertos\",\n        \"artistName\": \"Berliner Philharmoniker, Claudio Abbado & Sabine Meyer\"\n    },\n    {\n        \"albumId\": 283,\n        \"title\": \"Haydn: Symphonies 99 - 104\",\n        \"artistName\": \"Royal Philharmonic Orchestra & Sir Thomas Beecham\"\n    },\n    {\n        \"albumId\": 284,\n        \"title\": \"Beethoven: Symhonies Nos. 5 & 6\",\n        \"artistName\": \"Orchestre Révolutionnaire et Romantique & John Eliot Gardiner\"\n    },\n    {\n        \"albumId\": 285,\n        \"title\": \"A Soprano Inspired\",\n        \"artistName\": \"Britten Sinfonia, Ivor Bolton & Lesley Garrett\"\n    },\n    {\n        \"albumId\": 286,\n        \"title\": \"Great Opera Choruses\",\n        \"artistName\": \"Chicago Symphony Chorus, Chicago Symphony Orchestra & Sir Georg Solti\"\n    },\n    {\n        \"albumId\": 287,\n        \"title\": \"Wagner: Favourite Overtures\",\n        \"artistName\": \"Sir Georg Solti & Wiener Philharmoniker\"\n    },\n    {\n        \"albumId\": 288,\n        \"title\": \"Fauré: Requiem, Ravel: Pavane & Others\",\n        \"artistName\": \"Academy of St. Martin in the Fields, John Birch, Sir Neville Marriner & Sylvia McNair\"\n    },\n    {\n        \"albumId\": 289,\n        \"title\": \"Tchaikovsky: The Nutcracker\",\n        \"artistName\": \"London Symphony Orchestra & Sir Charles Mackerras\"\n    },\n    {\n        \"albumId\": 290,\n        \"title\": \"The Last Night of the Proms\",\n        \"artistName\": \"Barry Wordsworth & BBC Concert Orchestra\"\n    },\n    {\n        \"albumId\": 291,\n        \"title\": \"Puccini: Madama Butterfly - Highlights\",\n        \"artistName\": \"Herbert Von Karajan, Mirella Freni & Wiener Philharmoniker\"\n    },\n    {\n        \"albumId\": 292,\n        \"title\": \"Holst: The Planets, Op. 32 & Vaughan Williams: Fantasies\",\n        \"artistName\": \"Eugene Ormandy\"\n    },\n    {\n        \"albumId\": 293,\n        \"title\": \"Pavarotti's Opera Made Easy\",\n        \"artistName\": \"Luciano Pavarotti\"\n    },\n    {\n        \"albumId\": 294,\n        \"title\": \"Great Performances - Barber's Adagio and Other Romantic Favorites for Strings\",\n        \"artistName\": \"Leonard Bernstein & New York Philharmonic\"\n    },\n    {\n        \"albumId\": 295,\n        \"title\": \"Carmina Burana\",\n        \"artistName\": \"Boston Symphony Orchestra & Seiji Ozawa\"\n    },\n    {\n        \"albumId\": 296,\n        \"title\": \"A Copland Celebration, Vol. I\",\n        \"artistName\": \"Aaron Copland & London Symphony Orchestra\"\n    },\n    {\n        \"albumId\": 297,\n        \"title\": \"Bach: Toccata & Fugue in D Minor\",\n        \"artistName\": \"Ton Koopman\"\n    },\n    {\n        \"albumId\": 298,\n        \"title\": \"Prokofiev: Symphony No.1\",\n        \"artistName\": \"Sergei Prokofiev & Yuri Temirkanov\"\n    },\n    {\n        \"albumId\": 299,\n        \"title\": \"Scheherazade\",\n        \"artistName\": \"Chicago Symphony Orchestra & Fritz Reiner\"\n    },\n    {\n        \"albumId\": 300,\n        \"title\": \"Bach: The Brandenburg Concertos\",\n        \"artistName\": \"Orchestra of The Age of Enlightenment\"\n    },\n    {\n        \"albumId\": 301,\n        \"title\": \"Chopin: Piano Concertos Nos. 1 & 2\",\n        \"artistName\": \"Emanuel Ax, Eugene Ormandy & Philadelphia Orchestra\"\n    },\n    {\n        \"albumId\": 302,\n        \"title\": \"Mascagni: Cavalleria Rusticana\",\n        \"artistName\": \"James Levine\"\n    },\n    {\n        \"albumId\": 303,\n        \"title\": \"Sibelius: Finlandia\",\n        \"artistName\": \"Berliner Philharmoniker & Hans Rosbaud\"\n    },\n    {\n        \"albumId\": 304,\n        \"title\": \"Beethoven Piano Sonatas: Moonlight & Pastorale\",\n        \"artistName\": \"Maurizio Pollini\"\n    },\n    {\n        \"albumId\": 305,\n        \"title\": \"Great Recordings of the Century - Mahler: Das Lied von der Erde\",\n        \"artistName\": \"Gustav Mahler\"\n    },\n    {\n        \"albumId\": 306,\n        \"title\": \"Elgar: Cello Concerto & Vaughan Williams: Fantasias\",\n        \"artistName\": \"Felix Schmidt, London Symphony Orchestra & Rafael Frühbeck de Burgos\"\n    },\n    {\n        \"albumId\": 307,\n        \"title\": \"Adams, John: The Chairman Dances\",\n        \"artistName\": \"Edo de Waart & San Francisco Symphony\"\n    },\n    {\n        \"albumId\": 308,\n        \"title\": \"Tchaikovsky: 1812 Festival Overture, Op.49, Capriccio Italien & Beethoven: Wellington's Victory\",\n        \"artistName\": \"Antal Doráti & London Symphony Orchestra\"\n    },\n    {\n        \"albumId\": 309,\n        \"title\": \"Palestrina: Missa Papae Marcelli & Allegri: Miserere\",\n        \"artistName\": \"Choir Of Westminster Abbey & Simon Preston\"\n    },\n    {\n        \"albumId\": 310,\n        \"title\": \"Prokofiev: Romeo & Juliet\",\n        \"artistName\": \"Michael Tilson Thomas & San Francisco Symphony\"\n    },\n    {\n        \"albumId\": 311,\n        \"title\": \"Strauss: Waltzes\",\n        \"artistName\": \"Eugene Ormandy\"\n    },\n    {\n        \"albumId\": 312,\n        \"title\": \"Berlioz: Symphonie Fantastique\",\n        \"artistName\": \"Michael Tilson Thomas & San Francisco Symphony\"\n    },\n    {\n        \"albumId\": 313,\n        \"title\": \"Bizet: Carmen Highlights\",\n        \"artistName\": \"Chor der Wiener Staatsoper, Herbert Von Karajan & Wiener Philharmoniker\"\n    },\n    {\n        \"albumId\": 314,\n        \"title\": \"English Renaissance\",\n        \"artistName\": \"The King's Singers\"\n    },\n    {\n        \"albumId\": 315,\n        \"title\": \"Handel: Music for the Royal Fireworks (Original Version 1749)\",\n        \"artistName\": \"English Concert & Trevor Pinnock\"\n    },\n    {\n        \"albumId\": 316,\n        \"title\": \"Grieg: Peer Gynt Suites & Sibelius: Pelléas et Mélisande\",\n        \"artistName\": \"Berliner Philharmoniker & Herbert Von Karajan\"\n    },\n    {\n        \"albumId\": 317,\n        \"title\": \"Mozart Gala: Famous Arias\",\n        \"artistName\": \"Sir Georg Solti, Sumi Jo & Wiener Philharmoniker\"\n    },\n    {\n        \"albumId\": 318,\n        \"title\": \"SCRIABIN: Vers la flamme\",\n        \"artistName\": \"Christopher O'Riley\"\n    },\n    {\n        \"albumId\": 319,\n        \"title\": \"Armada: Music from the Courts of England and Spain\",\n        \"artistName\": \"Fretwork\"\n    },\n    {\n        \"albumId\": 320,\n        \"title\": \"Mozart: Symphonies Nos. 40 & 41\",\n        \"artistName\": \"Berliner Philharmoniker & Herbert Von Karajan\"\n    },\n    {\n        \"albumId\": 321,\n        \"title\": \"Back to Black\",\n        \"artistName\": \"Amy Winehouse\"\n    },\n    {\n        \"albumId\": 322,\n        \"title\": \"Frank\",\n        \"artistName\": \"Amy Winehouse\"\n    },\n    {\n        \"albumId\": 323,\n        \"title\": \"Carried to Dust (Bonus Track Version)\",\n        \"artistName\": \"Calexico\"\n    },\n    {\n        \"albumId\": 324,\n        \"title\": \"Beethoven: Symphony No. 6 'Pastoral' Etc.\",\n        \"artistName\": \"Otto Klemperer & Philharmonia Orchestra\"\n    },\n    {\n        \"albumId\": 325,\n        \"title\": \"Bartok: Violin & Viola Concertos\",\n        \"artistName\": \"Yehudi Menuhin\"\n    },\n    {\n        \"albumId\": 326,\n        \"title\": \"Mendelssohn: A Midsummer Night's Dream\",\n        \"artistName\": \"Philharmonia Orchestra & Sir Neville Marriner\"\n    },\n    {\n        \"albumId\": 327,\n        \"title\": \"Bach: Orchestral Suites Nos. 1 - 4\",\n        \"artistName\": \"Academy of St. Martin in the Fields, Sir Neville Marriner & Thurston Dart\"\n    },\n    {\n        \"albumId\": 328,\n        \"title\": \"Charpentier: Divertissements, Airs & Concerts\",\n        \"artistName\": \"Les Arts Florissants & William Christie\"\n    },\n    {\n        \"albumId\": 329,\n        \"title\": \"South American Getaway\",\n        \"artistName\": \"The 12 Cellists of The Berlin Philharmonic\"\n    },\n    {\n        \"albumId\": 330,\n        \"title\": \"Górecki: Symphony No. 3\",\n        \"artistName\": \"Adrian Leaper & Doreen de Feis\"\n    },\n    {\n        \"albumId\": 331,\n        \"title\": \"Purcell: The Fairy Queen\",\n        \"artistName\": \"Roger Norrington, London Classical Players\"\n    },\n    {\n        \"albumId\": 332,\n        \"title\": \"The Ultimate Relexation Album\",\n        \"artistName\": \"Charles Dutoit & L'Orchestre Symphonique de Montréal\"\n    },\n    {\n        \"albumId\": 333,\n        \"title\": \"Purcell: Music for the Queen Mary\",\n        \"artistName\": \"Equale Brass Ensemble, John Eliot Gardiner & Munich Monteverdi Orchestra and Choir\"\n    },\n    {\n        \"albumId\": 334,\n        \"title\": \"Weill: The Seven Deadly Sins\",\n        \"artistName\": \"Kent Nagano and Orchestre de l'Opéra de Lyon\"\n    },\n    {\n        \"albumId\": 335,\n        \"title\": \"J.S. Bach: Chaconne, Suite in E Minor, Partita in E Major & Prelude, Fugue and Allegro\",\n        \"artistName\": \"Julian Bream\"\n    },\n    {\n        \"albumId\": 336,\n        \"title\": \"Prokofiev: Symphony No.5 & Stravinksy: Le Sacre Du Printemps\",\n        \"artistName\": \"Berliner Philharmoniker & Herbert Von Karajan\"\n    },\n    {\n        \"albumId\": 337,\n        \"title\": \"Szymanowski: Piano Works, Vol. 1\",\n        \"artistName\": \"Martin Roscoe\"\n    },\n    {\n        \"albumId\": 338,\n        \"title\": \"Nielsen: The Six Symphonies\",\n        \"artistName\": \"Göteborgs Symfoniker & Neeme Järvi\"\n    },\n    {\n        \"albumId\": 339,\n        \"title\": \"Great Recordings of the Century: Paganini's 24 Caprices\",\n        \"artistName\": \"Itzhak Perlman\"\n    },\n    {\n        \"albumId\": 340,\n        \"title\": \"Liszt - 12 Études D'Execution Transcendante\",\n        \"artistName\": \"Michele Campanella\"\n    },\n    {\n        \"albumId\": 341,\n        \"title\": \"Great Recordings of the Century - Shubert: Schwanengesang, 4 Lieder\",\n        \"artistName\": \"Gerald Moore\"\n    },\n    {\n        \"albumId\": 342,\n        \"title\": \"Locatelli: Concertos for Violin, Strings and Continuo, Vol. 3\",\n        \"artistName\": \"Mela Tenenbaum, Pro Musica Prague & Richard Kapp\"\n    },\n    {\n        \"albumId\": 343,\n        \"title\": \"Respighi:Pines of Rome\",\n        \"artistName\": \"Eugene Ormandy\"\n    },\n    {\n        \"albumId\": 344,\n        \"title\": \"Schubert: The Late String Quartets & String Quintet (3 CD's)\",\n        \"artistName\": \"Emerson String Quartet\"\n    },\n    {\n        \"albumId\": 345,\n        \"title\": \"Monteverdi: L'Orfeo\",\n        \"artistName\": \"C. Monteverdi, Nigel Rogers - Chiaroscuro; London Baroque; London Cornett & Sackbu\"\n    },\n    {\n        \"albumId\": 346,\n        \"title\": \"Mozart: Chamber Music\",\n        \"artistName\": \"Nash Ensemble\"\n    },\n    {\n        \"albumId\": 347,\n        \"title\": \"Koyaanisqatsi (Soundtrack from the Motion Picture)\",\n        \"artistName\": \"Philip Glass Ensemble\"\n    },\n    {\n        \"albumId\": 348,\n        \"title\": \"Highway to Hell\",\n        \"artistName\": \"AC/DC\"\n    },\n    {\n        \"albumId\": 349,\n        \"title\": \"Automatic for the People\",\n        \"artistName\": \"R.E.M.\"\n    }\n]"
+								}
+							]
+						},
+						{
+							"name": "Get a list of albums (m2m client)",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{m2m.access_token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json"
+									},
+									{
+										"key": "x-api-version",
+										"value": "1.0",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/api/Album",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"api",
+										"Album"
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "OK",
+									"originalRequest": {
+										"method": "GET",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "application/json"
+											}
+										],
+										"url": {
+											"raw": "{{baseUrl}}/api/Album",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"api",
+												"Album"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										}
+									],
+									"cookie": [],
+									"body": "[\n  {\n    \"albumId\": \"<integer>\",\n    \"title\": \"<string>\",\n    \"artistName\": \"<string>\"\n  },\n  {\n    \"albumId\": \"<integer>\",\n    \"title\": \"<string>\",\n    \"artistName\": \"<string>\"\n  }\n]"
+								}
+							]
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "token",
+			"item": [
+				{
+					"name": "Client creds login",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"// get AT from response and set the access_token variable\r",
+									"let response = pm.response.json();\r",
+									"let at = response[\"access_token\"];\r",
+									"\r",
+									"pm.environment.set(\"m2m.access_token\", at);"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "client_id",
+									"value": "m2m.client",
+									"type": "text"
+								},
+								{
+									"key": "client_secret",
+									"value": "{{m2m.client_secret}}",
+									"type": "text"
+								},
+								{
+									"key": "grant_type",
+									"value": "client_credentials",
+									"type": "text"
+								},
+								{
+									"key": "scope",
+									"value": "web-api:admin",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{authUrl}}/connect/token",
+							"host": [
+								"{{authUrl}}"
+							],
+							"path": [
+								"connect",
+								"token"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Get AT with client creds",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "client_id",
+											"value": "m2m.client",
+											"type": "text"
+										},
+										{
+											"key": "client_secret",
+											"value": "511536EF-F270-4058-80CA-1C89C192F69A",
+											"type": "text"
+										},
+										{
+											"key": "grant_type",
+											"value": "client_credentials",
+											"type": "text"
+										},
+										{
+											"key": "scope",
+											"value": "web-api",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "https://localhost:5001/connect/token",
+									"protocol": "https",
+									"host": [
+										"localhost"
+									],
+									"port": "5001",
+									"path": [
+										"connect",
+										"token"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=UTF-8"
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 23 Mar 2025 15:31:13 GMT"
+								},
+								{
+									"key": "Server",
+									"value": "Kestrel"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-store, no-cache, max-age=0"
+								},
+								{
+									"key": "Pragma",
+									"value": "no-cache"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"access_token\": \"{{vault:json-web-token}}\",\n    \"expires_in\": 3600,\n    \"token_type\": \"Bearer\",\n    \"scope\": \"web-api\"\n}"
+						}
+					]
+				},
+				{
+					"name": "Interactive client login",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var at = pm.request.auth.oauth2.get('accessToken');\r",
+									"pm.environment.set(\"interactive.access_token\", at);"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "oauth2",
+							"oauth2": [
+								{
+									"key": "grant_type",
+									"value": "authorization_code_with_pkce",
+									"type": "string"
+								},
+								{
+									"key": "state",
+									"value": "{{$guid}}",
+									"type": "string"
+								},
+								{
+									"key": "clientId",
+									"value": "{{interactive.client_id}}",
+									"type": "string"
+								},
+								{
+									"key": "clientSecret",
+									"value": "{{interactive.client_secret}}",
+									"type": "string"
+								},
+								{
+									"key": "scope",
+									"value": "web-api:read",
+									"type": "string"
+								},
+								{
+									"key": "accessTokenUrl",
+									"value": "https://localhost:5001/connect/token",
+									"type": "string"
+								},
+								{
+									"key": "authUrl",
+									"value": "https://localhost:5001/connect/authorize",
+									"type": "string"
+								},
+								{
+									"key": "useBrowser",
+									"value": true,
+									"type": "boolean"
+								},
+								{
+									"key": "tokenName",
+									"value": "IS JWT",
+									"type": "string"
+								},
+								{
+									"key": "addTokenTo",
+									"value": "header",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://postman-echo.com/get?test=123",
+							"protocol": "https",
+							"host": [
+								"postman-echo",
+								"com"
+							],
+							"path": [
+								"get"
+							],
+							"query": [
+								{
+									"key": "test",
+									"value": "123"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "exception",
+			"item": [
+				{
+					"name": "Sample exception",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/exception",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"exception"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Server error",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/exception",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"exception"
+									]
+								}
+							},
+							"status": "Internal Server Error",
+							"code": 500,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/problem+json"
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 04 Apr 2025 15:28:01 GMT"
+								},
+								{
+									"key": "Server",
+									"value": "Kestrel"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache,no-store"
+								},
+								{
+									"key": "Expires",
+									"value": "-1"
+								},
+								{
+									"key": "Pragma",
+									"value": "no-cache"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"type\": \"https://tools.ietf.org/html/rfc9110#section-15.6.1\",\n    \"title\": \"An error occurred while processing your request.\",\n    \"status\": 500,\n    \"traceId\": \"00-eb37165faba2e5e1bc5720fa5869bd99-af66608d8a30d139-00\"\n}"
+						}
+					]
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "baseUrl",
+			"value": "https://localhost:7093"
+		},
+		{
+			"key": "authUrl",
+			"value": "https://localhost:5001"
+		}
+	]
+}
