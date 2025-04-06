@@ -37,6 +37,8 @@ builder.Services.AddApiVersioning(options =>
         new HeaderApiVersionReader("x-api-Version"));
 });
 
+var authService = builder.Configuration["Authentication:Schemes:LocalIdentityServer"] ?? "LocalIdentityServer";
+
 #region authentication
 
 builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
@@ -82,7 +84,7 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
             }
         };
     })
-    .AddJwtBearer("LocalIdentityServer", options =>
+    .AddJwtBearer(authService, options =>
     {
         options.MetadataAddress = "https://localhost:5001/.well-known/openid-configuration"; // discovery e/p from auth server
         // Optional if the MetadataAddress is specified
@@ -147,12 +149,12 @@ builder.Services.AddAuthorizationBuilder()
     {
         policy.RequireAuthenticatedUser();
         policy.RequireClaim("scope", [Constants.WebApiAdminScope]);
-        policy.AddAuthenticationSchemes([JwtBearerDefaults.AuthenticationScheme, "LocalIdentityServer"]);
+        policy.AddAuthenticationSchemes([JwtBearerDefaults.AuthenticationScheme, authService]);
     })
     .AddPolicy(Constants.AlbumApiReadOrAdminPolicy, policy =>
     {
         policy.RequireAuthenticatedUser();
-        policy.AddAuthenticationSchemes([JwtBearerDefaults.AuthenticationScheme, "LocalIdentityServer"]);
+        policy.AddAuthenticationSchemes([JwtBearerDefaults.AuthenticationScheme, authService]);
         policy.Requirements.Add(new ScopeRequirement());
     });
 
@@ -226,7 +228,7 @@ app.UseHttpsRedirection();
 app.MapAlbumEndpoints();
 app.MapVersionEndpoint();
 
-// for illustrative purposes
+// to illustrate the global exception handling in place
 app.MapSampleExceptionEndpoint();
 
 app.UseRateLimiter();

@@ -35,4 +35,8 @@
     <ProjectReference Include="..\WebAPI.Services\WebAPI.Services.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="App_Data\" />
+  </ItemGroup>
+
 </Project>
