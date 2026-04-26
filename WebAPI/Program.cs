@@ -160,8 +160,6 @@ builder.Services.AddAuthorizationBuilder()
 
 #endregion
 
-builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
-
 builder.Services.AddEndpointsApiExplorer();
 
 builder.Services.AddScoped<IAlbumRepository, AlbumRepository>();

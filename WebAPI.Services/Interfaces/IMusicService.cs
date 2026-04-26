@@ -10,7 +10,7 @@ public interface IMusicService
 
     public Task<AlbumReadDTO?> CreateAlbumAsync(AlbumCreateDTO albumCreateDTO);
 
-    public Task<AlbumReadDTO> UpdateAlbumAsync(AlbumUpdateDTO albumUpdateDTO);
+    public Task<AlbumReadDTO?> UpdateAlbumAsync(AlbumUpdateDTO albumUpdateDTO);
 
     public Task<int> DeleteAlbumByIdAsync(int albumId);
 }

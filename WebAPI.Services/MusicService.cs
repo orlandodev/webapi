@@ -1,14 +1,12 @@
-﻿using AutoMapper;
-using WebAPI.DataAccess;
-using WebAPI.DataAccess.Models;
+﻿using WebAPI.DataAccess;
 using WebAPI.Services.DTOs;
+using WebAPI.Services.Mappers;
 
 namespace WebAPI.Services;
 
-public class MusicService(IAlbumRepository albumRepository, IMapper mapper) : IMusicService
+public class MusicService(IAlbumRepository albumRepository) : IMusicService
 {
     private readonly IAlbumRepository albumRepository = albumRepository;
-    private readonly IMapper mapper = mapper;
 
     public async Task<AlbumReadDTO?> CreateAlbumAsync(AlbumCreateDTO albumCreateDTO)
     {
@@ -21,17 +19,12 @@ public class MusicService(IAlbumRepository albumRepository, IMapper mapper) : IM
 
         albumCreateDTO.ArtistId = artistId;
 
-        var album = mapper.Map<Album>(albumCreateDTO);
+        var album = AlbumMapper.Map(albumCreateDTO);
         var addedAlbum = await albumRepository.CreateAlbumAsync(album);
 
         if (addedAlbum != null) 
         {
-            return new AlbumReadDTO
-            {
-                Title = addedAlbum.Title,
-                ArtistName = albumCreateDTO.ArtistName,
-                AlbumId = addedAlbum.AlbumId
-            };
+            return AlbumMapper.Map(addedAlbum);
         }
 
         return null;
@@ -46,24 +39,17 @@ public class MusicService(IAlbumRepository albumRepository, IMapper mapper) : IM
     {
         var album = await albumRepository.GetAlbumByIdAsync(albumId);
 
-        return album != null ? new AlbumReadDTO { AlbumId = album.AlbumId, ArtistName = album.Artist.Name, Title = album.Title } : null;
+        return album != null ? AlbumMapper.Map(album) : null;
     }
 
     public async Task<IList<AlbumReadDTO>> GetAlbumsAsync()
     {
         var albums = await albumRepository.GetAlbumsAsync();
 
-        var albumsCollection = new List<AlbumReadDTO>();
-
-        foreach (var album in albums) 
-        { 
-            albumsCollection.Add(new AlbumReadDTO { AlbumId = album.AlbumId, Title = album.Title, ArtistName = album.Artist.Name });
-        }
-
-        return albumsCollection;
+        return AlbumMapper.Map(albums);
     }
 
-    public async Task<AlbumReadDTO> UpdateAlbumAsync(AlbumUpdateDTO albumUpdateDTO)
+    public async Task<AlbumReadDTO?> UpdateAlbumAsync(AlbumUpdateDTO albumUpdateDTO)
     {
         int artistId;
 
@@ -73,18 +59,13 @@ public class MusicService(IAlbumRepository albumRepository, IMapper mapper) : IM
             albumUpdateDTO.ArtistId = artistId;
         }
 
-        var album = mapper.Map<Album>(albumUpdateDTO);
+        var album = AlbumMapper.Map(albumUpdateDTO);
 
         var updatedAlbum = await albumRepository.UpdateAlbumAsync(album);
 
         if (updatedAlbum != null)
         {
-            return new AlbumReadDTO
-            {
-                Title = updatedAlbum.Title,
-                ArtistName = updatedAlbum.Artist.Name,
-                AlbumId = updatedAlbum.AlbumId
-            };
+            return AlbumMapper.Map(updatedAlbum);
         }
 
         return null;
