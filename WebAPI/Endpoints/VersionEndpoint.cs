@@ -17,7 +17,6 @@ public static class VersionEndpoint
         .WithName("GetApiVersion")
         .WithSummary("Get the API version")
         .WithDescription("Returns the current version of the API.")
-        .WithTags("Information")
-        .WithOpenApi();
+        .WithTags("Information");
     }
 }

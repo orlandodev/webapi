@@ -38,7 +38,6 @@ public static class AlbumEndpoints
         .WithName("GetAllAlbums")
         .WithSummary("Get a list of albums")
         .WithDescription("Returns a list of all album titles and associated artist name.")
-        .WithOpenApi()
         .RequireAuthorization([Authorization.Constants.AlbumApiReadOrAdminPolicy]);
 
 
@@ -52,7 +51,6 @@ public static class AlbumEndpoints
         .WithName("GetAlbumById")
         .WithSummary("Get a specific album")
         .WithDescription("Return details for a specific album including title and artist name")
-        .WithOpenApi()
         .RequireAuthorization([Authorization.Constants.AlbumApiReadOrAdminPolicy]);
 
         // update
@@ -77,7 +75,6 @@ public static class AlbumEndpoints
         .WithName("UpdateAlbum")
         .WithSummary("Updates a specific album")
         .WithDescription("Updates the details for a specific album including title and artist name")
-        .WithOpenApi()
         .RequireAuthorization(Authorization.Constants.AlbumApiAdminPolicy);
 
         // optional: validate the incoming DTO with a custom filter vs. fluent validation above
@@ -101,7 +98,6 @@ public static class AlbumEndpoints
         .WithName("CreateAlbum")
         .WithSummary("Creates a new album")
         .WithDescription("Creates a new album with the supplied title and artist name")
-        .WithOpenApi()
         .RequireAuthorization(Authorization.Constants.AlbumApiAdminPolicy);
 
         // delete
@@ -114,7 +110,6 @@ public static class AlbumEndpoints
         .WithName("DeleteAlbum")
         .WithSummary("Deletes a specific album")
         .WithDescription("Removes an album using its unique Id value")
-        .WithOpenApi()
         .RequireAuthorization(Authorization.Constants.AlbumApiAdminPolicy);
     }
 }
